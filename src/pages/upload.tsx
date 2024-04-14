@@ -10,7 +10,7 @@ import { client } from '../utils/client'
 import { topics } from '@/utils/constants'
 import { BASE_URL } from '@/utils'
 
-const upload = () => {
+const Upload = () => {
   const [isLoading, setIsLoading] = useState<Boolean>(false)
   const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>()
   const [wrongFileType, setWrongFileType] = useState<Boolean>(false)
@@ -181,4 +181,4 @@ const upload = () => {
   )
 }
 
-export default upload
+export default Upload
