@@ -9,9 +9,7 @@ import { IoMdAdd } from 'react-icons/io'
 
 import Logo from '../utils/tiktik-logo.png'
 import { createOrGetUser } from '@/utils'
-import useAuthStore from '../../store/authStore';
-import { IUser } from '../../types';
-
+import useAuthStore from '../../store/authStore'
 
 const Navbar = () => {
   const router = useRouter()
@@ -70,7 +68,7 @@ const Navbar = () => {
                 </span>
               </button>
             </Link>
-            {userProfile?.image && (
+            {userProfile.image && (
               <Link href='/'>
               <>
                 <Image 

@@ -1,24 +1,26 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import axios from 'axios'
+import axios from 'axios'  
 import { BASE_URL } from '@/utils'
+import { IUser } from '../types'
 
-const authStore = (set: any) => ({
+interface IAuthStore {
+  userProfile: IUser | null;
+  allUsers: IUser[];
+  addUser: (user: IUser) => void;
+  removeUser: () => void;
+  fetchAllUsers: () => Promise<void>;
+}
+
+const useAuthStore = create<IAuthStore>((set) => ({
   userProfile: null,
   allUsers: [],
-  
-  addUser: (user: any) => set({ userProfile: user }),
-  removeUser: () => set({ userProfile : null }),
+  addUser: (user: IUser) => set({ userProfile: user }),
+  removeUser: () => set({ userProfile: null }),
   fetchAllUsers: async () => {
-    const response = await axios.get(`${BASE_URL}/api/users`)
-    set({ allUsers: response.data })
-  }
-})
-
-const useAuthStore = create(
-  persist(authStore, {
-    name: 'auth'
-  })
-)
+    const response = await axios.get(`${BASE_URL}/api/users`);
+    set({ allUsers: response.data });
+  },
+}))
 
 export default useAuthStore
